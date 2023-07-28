@@ -9,7 +9,7 @@ const CardCharacteres = ({ character }) => {
         actions.addToFavorites(character);
     };
 
-    const handleRemoveFromFavorites = () =>{
+    const handleRemoveFromFavorites = () => {
         actions.removeFromFavorites(character);
     };
 

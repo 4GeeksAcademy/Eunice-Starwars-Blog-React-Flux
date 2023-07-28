@@ -20,10 +20,10 @@ const Layout = () => {
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
 					<Navbar />
-					<Favorites />
 					<Routes>
-{/* 						<Route path="/" element={<Home />} />
- */}						<Route path="*" element={<h1>Not found!</h1>} />
+						<Route path="/" element={<Home />} />
+						<Favorites favorites={StorageEvent.favorites} />
+						<Route path="*" element={<h1>Not found!</h1>} />
 					</Routes>
 					<Footer />
 				</ScrollToTop>
