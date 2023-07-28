@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from "prop-types";
+import { Context } from '../store/appContext';
 
 const CardPlanets = ({ planet }) => {
+    const { actions } = useContext(Context)
+
+     const handleAddFavorites = () => {
+        actions.addToFavorites(planet);
+    };
+
+    const handleRemoveFromFavorites = () =>{
+        actions.removeFromFavorites(planet);
+    };
+
     return (
         <div className="card">
             <img src={`https://starwars-visualguide.com/assets/img/planets/${planet.uid}.jpg`} className="card-img-top" alt="..." />
@@ -10,7 +21,7 @@ const CardPlanets = ({ planet }) => {
                 <p className="card-text">{`Population: ${planet.population}`}</p>
                 <p className="card-text">{`Terrain: ${planet.terrain}`}</p>
                 <button className="buttons">Learn more!</button>
-                <button className="buttons"><i className="fa-regular fa-heart"></i></button>
+               <button className="buttons" onClick={handleAddFavorites}><i className="fa-regular fa-heart"></i></button>
             </div>
         </div>
     );
