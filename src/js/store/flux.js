@@ -1,3 +1,4 @@
+import axios from 'axios';
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -7,8 +8,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			favorites: [],
 		},
 		actions: {
-			// Fetch characters, planets, and vehicles from the SWAPI
+
 			fetchCharacters: async () => {
+
+				const store = getStore();
+
 				try {
 					const response = await axios.get("https://www.swapi.tech/api/people");
 					setStore({ characters: response.data.results });
@@ -35,20 +39,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			// Add character, planet, or vehicle to favorites
-			addToFavorites: item => {
+
+			/* addToFavorites: item => {
+				const { favorites } = getStore();
+				const updatedFavorites = [...favorites, item];
+				setStore({ favorites: updatedFavorites });
+			},
+		
+			removeFromFavorites: item => {
+				const { favorites } = getStore();
+				const updatedFavorites = favorites.filter(favoriteItem => favoriteItem.uid !== item.uid);
+				setStore({ favorites: updatedFavorites });
+			}
+		}, */
+
+			/* addToFavorites: item => {
 				const { favorites } = getStore();
 				if (!favorites.includes(item)) {
 					setStore({ favorites: [...favorites, item] });
 				}
 			},
 
-			// Remove character, planet, or vehicle from favorites
 			removeFromFavorites: item => {
 				const { favorites } = getStore();
 				const updatedFavorites = favorites.filter(favorite => favorite !== item);
 				setStore({ favorites: updatedFavorites });
-			},
+			}, */
 		},
 	};
 };

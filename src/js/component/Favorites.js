@@ -1,8 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from "prop-types";
 import { Link } from 'react-router-dom'
+import { Context } from '../store/appContext';
 
 const Favorites = ({ favorites }) => {
+    const { actions } = useContext(Context)
+
+    const handleRemoveFromFavorites = item => {
+        actions.removeFromFavorites(item);
+    };
+
     return (
         <div className="favoritesContainer">
             <div className="dropdown">
@@ -10,14 +17,15 @@ const Favorites = ({ favorites }) => {
                     Favorites
                 </button>
                 <ul className="dropdown-menu">
-                    {favorites.map((favorite, index) => (
 
-                        <li className="d-flex align-items-center justify-content-between">
+                {/*     {favorites && favorites.length > 0 && favorites.map((favorite, index) => (
+                        
+                        <li key={index} className="d-flex align-items-center justify-content-between">
                             <span className="favoriteName">{favorite.name}</span>
                             <button className="trashCanButton" onClick={() => handleRemoveFromFavorites(favorite)}><i className="fa-solid fa-trash-can"></i></button>
                         </li>
 
-                    ))}
+                    ))} */}
                 </ul>
             </div>
         </div>

@@ -3,14 +3,25 @@
     padding-left: 3rem;
 }
 
-.card-body {
+.card-group {
+    white-space: nowrap;  
+    display: flex;
+    justify-content: space-between;  
+}
+
+/* .card-group {
+    white-space: nowrap;
     overflow: auto;
+}
+
+.card {
+    margin: 2rem;
 }
 
 .card-img-top {
     width: 20rem;
     height: 18rem;
-}
+} */
 
 .buttons {
     padding: 1rem;
