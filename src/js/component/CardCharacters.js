@@ -2,16 +2,16 @@ import React, { useContext } from 'react';
 import PropTypes from "prop-types";
 import { Context } from '../store/appContext';
 
-const CardCharacteres = ({ character }) => {
+const CardCharacters = ({ character }) => {
     const { actions } = useContext(Context);
 
-    const handleAddFavorites = () => {
+ /*    const handleAddFavorites = () => {
         actions.addToFavorites(character);
     };
 
     const handleRemoveFromFavorites = () => {
         actions.removeFromFavorites(character);
-    };
+    }; */
 
     return (
         <div className="card">
@@ -24,15 +24,15 @@ const CardCharacteres = ({ character }) => {
                 div
                 <button className="buttons">Learn more!</button>
                
-               <button className="buttons" onClick={handleAddFavorites}><i className="fa-regular fa-heart"></i></button>
+               <button className="buttons" /* onClick={handleAddFavorites} */><i className="fa-regular fa-heart"></i></button>
             
             </div>
         </div>
     );
 };
 
-CardCharacteres.propTypes = {
-    character: PropTypes.object.isRequired
+CardCharacters.propTypes = {
+    character: PropTypes.object
 }
 
-export default CardCharacteres;
+export default CardCharacters;
