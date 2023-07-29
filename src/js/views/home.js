@@ -11,25 +11,44 @@ const Home = () => {
 	return (
 		<>
 
+			{/* <div className="card-group overflow-auto">
+				<div className="row flex-nowrap">
+					{!!store.characters && store.characters.map((character) => (
+						<div className="col-2">
+							<CardCharacters key={character.uid} character={character} />
+						</div>
+					))}
+				</div>
+			</div> */}
 
-			<div className="card-group d-flex">
-				{!!store.characters && store.characters.map((character) => (
-					<CardCharacters key={character.uid} character={character} />
-				))}
+			<div className="card-group overflow-auto ms-4">
+				<div className="cardContainer row flex-nowrap">
+					{!!store.characters && store.characters.map((character) => (
+						<div key={character.uid} className="col-2">
+							<CardCharacters key={character.uid} character={character} />
+						</div>
+					))}
+				</div>
 			</div>
 
-
-			<div className="card-group">
-				{!!store.planets && store.planets.map((planet) => (
-					<CardPlanets key={planet.uid} planet={planet} />
-				))}
+			<div className="card-group overflow-auto ms-4">
+				<div className="cardContainer row flex-nowrap">
+					{!!store.planets && store.planets.map((planet) => (
+						<div key={planet.uid} className="col-2">
+							<CardPlanets key={planet.uid} planet={planet} />
+						</div>
+					))}
+				</div>
 			</div>
 
-
-			<div className="card-group">
-				{!!store.vehicles && store.vehicles.map((vehicle) => (
-					<CardVehicles key={vehicle.uid} vehicle={vehicle} />
-				))}
+			<div className="card-group overflow-auto ms-4">
+				<div className="cardContainer row flex-nowrap">
+					{!!store.vehicles && store.vehicles.map((vehicle) => (
+						<div key={vehicle.uid} className="col-2">
+							<CardVehicles key={vehicle.uid} vehicle={vehicle} />
+						</div>
+					))}
+				</div>
 			</div>
 		</>
 
