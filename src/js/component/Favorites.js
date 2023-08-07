@@ -17,15 +17,18 @@ const Favorites = ({ favorites }) => {
                     Favorites
                 </button>
                 <ul className="dropdown-menu">
-
-                {/*     {favorites && favorites.length > 0 && favorites.map((favorite, index) => (
-                        
-                        <li key={index} className="d-flex align-items-center justify-content-between">
-                            <span className="favoriteName">{favorite.name}</span>
-                            <button className="trashCanButton" onClick={() => handleRemoveFromFavorites(favorite)}><i className="fa-solid fa-trash-can"></i></button>
-                        </li>
-
-                    ))} */}
+                    {favorites && favorites.length > 0 ? (
+                        favorites.map((favorite, index) => (
+                            <li key={index} className="d-flex align-items-center justify-content-between">
+                                <Link to={`/vehicle/${favorite.uid}`} className="favoriteName">{favorite.name}</Link>
+                                <button className="trashCanButton" onClick={() => handleRemoveFromFavorites(favorite)}>
+                                    <i className="fa-solid fa-trash-can"></i>
+                                </button>
+                            </li>
+                        ))
+                    ) : (
+                        <li className="d-flex align-items-center justify-content-center">No favorites added yet.</li>
+                    )}
                 </ul>
             </div>
         </div>
@@ -33,7 +36,7 @@ const Favorites = ({ favorites }) => {
 }
 
 Favorites.propTypes = {
-    favorites: PropTypes.object.isRequired
+    favorites: PropTypes.array.isRequired
 }
 
 export default Favorites;
