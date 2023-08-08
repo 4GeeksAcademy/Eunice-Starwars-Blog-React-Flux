@@ -18,17 +18,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 
+
 			fetchCharacters: async () => {
-
-				const store = getStore();
-
 				try {
 					const response = await axios.get("https://www.swapi.tech/api/people");
-					setStore({ characters: response.data.results });
+					const charactersWithDetails = await Promise.all(response.data.results.map(async character => {
+						const characterDetailsResponse = await axios.get(character.url);
+						const characterDetails = characterDetailsResponse.data.result.properties;
+						return { ...character, details: characterDetails };
+					}));
+					setStore({ characters: charactersWithDetails });
 				} catch (error) {
 					console.error("Error fetching characters:", error);
 				}
 			},
+
 
 			fetchCharacterDetails: async (characterUid) => {
 				try {
@@ -46,7 +50,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			fetchPlanets: async () => {
 				try {
 					const response = await axios.get("https://www.swapi.tech/api/planets");
-					setStore({ planets: response.data.results });
+					const planetsWithDetails = await Promise.all(response.data.results.map(async planet => {
+						const planetDetailsResponse = await axios.get(planet.url);
+						const planetDetails = planetDetailsResponse.data.result.properties;
+						return { ...planet, details: planetDetails };
+					}));
+					setStore({ planets: planetsWithDetails });
 				} catch (error) {
 					console.error("Error fetching planets:", error);
 				}
@@ -67,11 +76,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 			fetchVehicles: async () => {
 				try {
 					const response = await axios.get("https://www.swapi.tech/api/vehicles");
-					setStore({ vehicles: response.data.results });
+					const vehiclesWithDetails = await Promise.all(response.data.results.map(async vehicle => {
+						const vehicleDetailsResponse = await axios.get(vehicle.url);
+						const vehicleDetails = vehicleDetailsResponse.data.result.properties;
+						return { ...vehicle, details: vehicleDetails };
+					}));
+					setStore({ vehicles: vehiclesWithDetails });
 				} catch (error) {
 					console.error("Error fetching vehicles:", error);
 				}
 			},
+
 
 			fetchVehicleDetails: async (vehicleUid) => {
 				try {
@@ -87,7 +102,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			addToFavorites: item => {
 				const store = getStore();
-				setStore({ favorites: [...store.favorites, item] });
+				setStore({ favorites: [...store.favorites, { ...item, id: `${item.type}-${item.uid}` }] });
 			},
 
 			removeFromFavorites: item => {

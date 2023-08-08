@@ -10,17 +10,6 @@ const Home = () => {
 
 	return (
 		<>
-
-			{/* <div className="card-group overflow-auto">
-				<div className="row flex-nowrap">
-					{!!store.characters && store.characters.map((character) => (
-						<div className="col-2">
-							<CardCharacters key={character.uid} character={character} />
-						</div>
-					))}
-				</div>
-			</div> */}
-
 			<div className="card-group overflow-auto ms-4">
 				<div className="cardContainer row flex-nowrap">
 					{!!store.characters && store.characters.map((character) => (

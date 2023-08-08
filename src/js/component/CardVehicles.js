@@ -10,12 +10,11 @@ const CardVehicles = ({ vehicle }) => {
 
     const handleToggleFavorite = () => {
         if (isFavorite) {
-            actions.removeFromFavorites(vehicle);
+            actions.removeFromFavorites({ type: "vehicle", uid: vehicle.uid });
         } else {
-            actions.addToFavorites(vehicle);
+            actions.addToFavorites({ type: "vehicle", uid: vehicle.uid });
         }
     };
-
 
     return (
         <div className="card">
@@ -23,9 +22,9 @@ const CardVehicles = ({ vehicle }) => {
             <div className="card-body">
                 <h5 className="card-title">{vehicle.name}</h5>
                 <div className="features d-flex flex-column mb-3">
-                    <span className="card-text">{`Model: ${vehicle.model}`}</span>
-                    <span className="card-text">{`Vehicle Class: ${vehicle.vehicle_class}`}</span>
-                    <span className="card-text">{`Manufacturer: ${vehicle.manufacturer}`}</span>
+                    <span className="card-text">{`Passengers: ${vehicle.details.passengers}`}</span>
+                    <span className="card-text">{`Crew: ${vehicle.details.crew}`}</span>
+                    <span className="card-text">{`Length: ${vehicle.details.length}`}</span>
                 </div>
                 <div className="d-flex justify-content-between">
                     <button className="btn btn-warning mt-4 fw-bold">

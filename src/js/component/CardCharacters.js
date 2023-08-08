@@ -4,7 +4,17 @@ import { Context } from '../store/appContext';
 import { Link } from 'react-router-dom';
 
 const CardCharacters = ({ character }) => {
-    const { actions } = useContext(Context);
+    const { actions, store } = useContext(Context);
+    const { favorites } = store;
+    const isFavorite = favorites.some(favorite => favorite.uid === character.uid);
+
+    const handleToggleFavorite = () => {
+        if (isFavorite) {
+            actions.removeFromFavorites({ ...character, type: "character", uid: character.uid });
+        } else {
+            actions.addToFavorites({ ...character, type: "character", uid: character.uid });
+        }
+    };
 
     return (
         <div className="card">
@@ -12,9 +22,9 @@ const CardCharacters = ({ character }) => {
             <div className="card-body">
                 <h5 className="card-title">{character.name}</h5>
                 <div className="features d-flex flex-column mb-3">
-                    <span className="card-text">{`Gender: ${character.gender}`}</span>
-                    <span className="card-text">{`Hair Color: ${character.hair_color}`}</span>
-                    <span className="card-text">{`Eye Color: ${character.eye_color}`}</span>
+                    <span className="card-text">{`Gender: ${character.details.gender}`}</span>
+                    <span className="card-text">{`Hair Color: ${character.details.hair_color}`}</span>
+                    <span className="card-text">{`Eye Color: ${character.details.eye_color}`}</span>
                 </div>
                 <div className="d-flex justify-content-between">
                     <button className="buttons btn btn-warning mt-4 fw-bold">
@@ -22,12 +32,12 @@ const CardCharacters = ({ character }) => {
                             Learn More!
                         </Link>
                     </button>
-                    <button className="buttons btn btn-warning mt-4 fw-bold">
-                        <i className="fa-regular fa-heart"></i>
+                    <button className="buttons btn btn-warning mt-4 fw-bold" onClick={handleToggleFavorite}>
+                        <i className={`${isFavorite ? "fa-solid" : "fa-regular"} fa-heart`}></i>
                     </button>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 
