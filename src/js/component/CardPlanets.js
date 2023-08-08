@@ -6,13 +6,14 @@ import { Link } from 'react-router-dom';
 const CardPlanets = ({ planet }) => {
     const { actions, store } = useContext(Context)
     const { favorites } = store;
-    const isFavorite = favorites.some(favorite => favorite.uid === planet.uid);
+    const uniqueId = `planet-${planet.uid}`; // Construir el ID único
+    const isFavorite = favorites.some(favorite => favorite.id === uniqueId); // Usar el nuevo ID único
 
     const handleToggleFavorite = () => {
         if (isFavorite) {
-            actions.removeFromFavorites({ ...planet, type: "planet", uid: planet.uid });
+            actions.removeFromFavorites({ ...planet, type: 'planet', id: uniqueId }); // Usar el nuevo ID único
         } else {
-            actions.addToFavorites({ ...planet, type: "planet", uid: planet.uid });
+            actions.addToFavorites({ ...planet, type: 'planet', id: uniqueId }); // Usar el nuevo ID único
         }
     };
 
@@ -30,7 +31,7 @@ const CardPlanets = ({ planet }) => {
                 </div>
                 <div className="d-flex justify-content-between">
                     <button className="btn btn-warning mt-4 fw-bold">
-                        <Link className="link fs-5 text-decoration-none text-dark" to={`/planet/${planet.uid}`} onClick={() => actions.fetchPlanetDetails(planet.uid)}>
+                        <Link className="link text-decoration-none text-dark" to={`/planet/${planet.uid}`} onClick={() => actions.fetchPlanetDetails(planet.uid)}>
                             Learn More!
                         </Link>
                     </button>

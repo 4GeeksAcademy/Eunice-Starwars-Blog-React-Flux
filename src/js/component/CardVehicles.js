@@ -6,13 +6,14 @@ import { Link } from 'react-router-dom';
 const CardVehicles = ({ vehicle }) => {
     const { actions, store } = useContext(Context);
     const { favorites } = store;
-    const isFavorite = favorites.some(favorite => favorite.uid === vehicle.uid);
+    const uniqueId = `vehicle-${vehicle.uid}`; // Construir el ID único
+    const isFavorite = favorites.some(favorite => favorite.id === uniqueId); // Usar el nuevo ID único
 
     const handleToggleFavorite = () => {
         if (isFavorite) {
-            actions.removeFromFavorites({ type: "vehicle", uid: vehicle.uid });
+            actions.removeFromFavorites({ ...vehicle, type: 'vehicle', id: uniqueId }); // Usar el nuevo ID único
         } else {
-            actions.addToFavorites({ type: "vehicle", uid: vehicle.uid });
+            actions.addToFavorites({ ...vehicle, type: 'vehicle', id: uniqueId }); // Usar el nuevo ID único
         }
     };
 
@@ -28,7 +29,7 @@ const CardVehicles = ({ vehicle }) => {
                 </div>
                 <div className="d-flex justify-content-between">
                     <button className="btn btn-warning mt-4 fw-bold">
-                        <Link className="link fs-5 text-decoration-none text-dark" to={`/vehicle/${vehicle.uid}`} onClick={() => actions.fetchVehicleDetails(vehicle.uid)}>
+                        <Link className="link text-decoration-none text-dark" to={`/vehicle/${vehicle.uid}`} onClick={() => actions.fetchVehicleDetails(vehicle.uid)}>
                             Learn More!
                         </Link>
                     </button>

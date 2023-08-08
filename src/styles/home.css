@@ -1,5 +1,5 @@
 .starwarsLogo {
-    width: 8rem;
+    width: 10rem;
     padding-left: 3rem;
 }
 
@@ -11,7 +11,7 @@
 
 .imagenFront {
     width: 100%;
-    height: 25rem;
+    height: 24rem;
 }
 
 .card-title {
@@ -38,10 +38,16 @@
     border: none;
     outline: none;
     margin: 0 3rem;
+    font-size: 1.2rem;
 }
 
 .favoriteName {
     margin: 0.5rem;
+    padding: 0 1rem;
+}
+
+.dropdown-menu {
+    padding: 1rem;
 }
 
 .trashCanButton {
@@ -54,7 +60,8 @@
 .infoContainer {
     display: flex;
     justify-content: space-around;
-    margin: 2rem;
+    background-image: url("https://img.freepik.com/free-photo/3d-hyperspace-background-with-warp-tunnel-effect_1048-12526.jpg?w=900&t=st=1691484803~exp=1691485403~hmac=bfc9b294bb35a30597ca9592dc6fa561ddec56e150b9b58c7cf29f6c6316fe12");
+    padding: 3rem;
 }
 
 .card-img-top {
@@ -63,5 +70,9 @@
 }
 
 #accordionFlushExample {
-    width: 40%;
+    width: 45%;
+}
+
+.accordion-button {
+    font-weight: bold;
 }

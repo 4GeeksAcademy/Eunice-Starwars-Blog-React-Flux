@@ -102,12 +102,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			addToFavorites: item => {
 				const store = getStore();
-				setStore({ favorites: [...store.favorites, { ...item, id: `${item.type}-${item.uid}` }] });
+				const uniqueId = `${item.type}-${item.uid}`;
+				setStore({ favorites: [...store.favorites, { ...item, id: uniqueId }] });
 			},
 
 			removeFromFavorites: item => {
 				const store = getStore();
-				const updatedFavorites = store.favorites.filter(favorite => favorite.uid !== item.uid);
+				const uniqueId = `${item.type}-${item.uid}`;
+				const updatedFavorites = store.favorites.filter(favorite => favorite.id !== uniqueId);
 				setStore({ favorites: updatedFavorites });
 			}
 
