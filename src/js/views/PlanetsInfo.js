@@ -10,7 +10,7 @@ const PlanetsInfo = () => {
       <img src={`https://starwars-visualguide.com/assets/img/planets/${store.uidPlanet}.jpg`} onError={({ currentTarget }) => {
         currentTarget.onerror = null; currentTarget.src = "https://starwars-visualguide.com/assets/img/placeholder.jpg";
       }} className="card-img-top" alt="..." />
-      <div className="accordion accordion-flush" id="accordionFlushExample">
+      <div className="accordion accordion-flush p-2" id="accordionFlushExample">
         <div className="accordion-item">
           <h1 className="mb-5 text-warning">{!!store.idPlanet ? store.idPlanet.name : "...Loading"}</h1>
           <h2 className="accordion-header">

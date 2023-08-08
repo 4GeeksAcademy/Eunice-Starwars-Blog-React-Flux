@@ -6,13 +6,14 @@ import { Link } from 'react-router-dom';
 const CardCharacters = ({ character }) => {
     const { actions, store } = useContext(Context);
     const { favorites } = store;
-    const isFavorite = favorites.some(favorite => favorite.uid === character.uid);
+    const uniqueId = `character-${character.uid}`;
+    const isFavorite = favorites.some(favorite => favorite.id === uniqueId);
 
     const handleToggleFavorite = () => {
         if (isFavorite) {
-            actions.removeFromFavorites({ ...character, type: "character", uid: character.uid });
+            actions.removeFromFavorites({ ...character, type: 'character', id: uniqueId });
         } else {
-            actions.addToFavorites({ ...character, type: "character", uid: character.uid });
+            actions.addToFavorites({ ...character, type: 'character', id: uniqueId });
         }
     };
 
@@ -28,7 +29,7 @@ const CardCharacters = ({ character }) => {
                 </div>
                 <div className="d-flex justify-content-between">
                     <button className="buttons btn btn-warning mt-4 fw-bold">
-                        <Link className="link fs-5 text-decoration-none text-dark" to={`/character/${character.uid}`} onClick={() => actions.fetchCharacterDetails(character.uid)}>
+                        <Link className="link text-decoration-none text-dark" to={`/character/${character.uid}`} onClick={() => actions.fetchCharacterDetails(character.uid)}>
                             Learn More!
                         </Link>
                     </button>
