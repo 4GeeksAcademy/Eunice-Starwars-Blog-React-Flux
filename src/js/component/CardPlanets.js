@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 const CardPlanets = ({ planet }) => {
     const { actions } = useContext(Context)
+    
 
     return (
         <div className="card">

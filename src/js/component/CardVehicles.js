@@ -34,7 +34,7 @@ const CardVehicles = ({ vehicle }) => {
                         </Link>
                     </button>
                     <button className="buttons btn btn-warning mt-4 fw-bold" onClick={handleToggleFavorite}>
-                        <i className={`fa-regular ${isFavorite ? 'fa-heart' : 'fa-heart-o'}`}></i>
+                        <i className={`${isFavorite ? "fa-solid" : "fa-regular"} fa-heart`}></i>
                     </button>
                 </div>
             </div>
