@@ -20,7 +20,7 @@ const Favorites = ({ favorites }) => {
                     {favorites && favorites.length > 0 ? (
                         favorites.map((favorite, index) => (
                             <li key={index} className="d-flex align-items-center justify-content-between">
-                                <Link to={`/vehicle/${favorite.uid}`} className="favoriteName">{favorite.name}</Link>
+                                <Link to={`/${favorite.type}/${favorite.uid}`} className="favoriteName">{favorite.name}</Link>
                                 <button className="trashCanButton" onClick={() => handleRemoveFromFavorites(favorite)}>
                                     <i className="fa-solid fa-trash-can"></i>
                                 </button>
